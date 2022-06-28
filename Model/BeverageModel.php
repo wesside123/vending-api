@@ -5,7 +5,7 @@ class BeverageModel extends Database
 {
     public function getBeverages($limit)
     {
-        return $this->select("SELECT * FROM beverages ORDER BY id ASC LIMIT ?", ["i", $limit]);
+        return $this->select("SELECT quantity FROM beverages ORDER BY id ASC LIMIT ?", ["i", $limit]);
     }
     public function getId($id, $limit)
     {

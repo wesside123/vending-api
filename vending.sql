@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 28, 2022 at 12:27 AM
+-- Generation Time: Jun 28, 2022 at 01:38 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.1.32
 
@@ -32,8 +32,8 @@ CREATE TABLE `beverages` (
 --
 
 INSERT INTO `beverages` (`id`, `name`, `quantity`, `price`) VALUES
-(0, 'coke', 4, 2),
-(1, 'sprite', 4, 2),
+(0, 'coke', 5, 2),
+(1, 'sprite', 5, 2),
 (2, 'pepsi', 5, 2);
 
 -- --------------------------------------------------------
@@ -52,7 +52,7 @@ CREATE TABLE `coins` (
 --
 
 INSERT INTO `coins` (`id`, `quantity`) VALUES
-(1, 8);
+(1, 1);
 
 --
 -- Indexes for dumped tables

@@ -20,10 +20,15 @@ class BeverageController extends BaseController {
           $id = $arrQueryStringParams[ 'id' ];
           $arrBeverages = $beverageModel->getId( $id, $intLimit );
         } else
-          $arrBeverages = $beverageModel->getBeverages( $intLimit );
-        $responseData = json_encode( $arrBeverages );
+          $arrBeverages = $beverageModel->getBeverages( $intLimit );        
+          
+        $quantity = array_column($arrBeverages, 'quantity');
+          
+        $responseData = json_encode($quantity);
+
         $responseCode = 'HTTP/1.1 200 OK';  
-        $responseHeaders = "";
+        $xcoins = "";
+        $xinventory = "";
       } catch ( Error $e ) {
         $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
         $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
@@ -117,7 +122,6 @@ class BeverageController extends BaseController {
         $beverageModel = new BeverageModel();
         $arrCoins = $beverageModel->selectCoin();
         $responseData = json_encode( $arrCoins );
-        //print_r($responseData);
       } catch ( Error $e ) {
         $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
         $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';

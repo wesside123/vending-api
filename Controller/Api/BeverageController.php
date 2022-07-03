@@ -10,7 +10,7 @@ class BeverageController extends BaseController {
     $requestMethod = $_SERVER[ "REQUEST_METHOD" ];
     $arrQueryStringParams = $this->getQueryStringParams();
 
-    //Array of remaining item quantities, (an array of integers)
+    //Array of remaining item quantities
     if ( strtoupper( $requestMethod ) == 'GET' ) {
       try {
         $beverageModel = new BeverageModel();

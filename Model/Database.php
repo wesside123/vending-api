@@ -2,7 +2,8 @@
 class Database
 {
     protected $connection = null;
- 
+    
+    //Connect to DB
     public function __construct()
     {
         try {
@@ -15,7 +16,7 @@ class Database
             throw new Exception($e->getMessage());   
         }           
     }
- 
+    //Query the DB
     public function select($query = "" , $params = [])
     {
         try {
@@ -31,6 +32,7 @@ class Database
         return false;
     }
     
+    //Update the DB
     public function update($query = "" , $params = [])
     {
         try {
@@ -42,7 +44,8 @@ class Database
         }
         return false;
     }
- 
+    
+    //Execute Statement on DB
     private function executeStatement($query = "" , $params = [])
     {
         try {

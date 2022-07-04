@@ -1,4 +1,6 @@
 <?php
+//DB Connection Info
+//UPDATE ME
 define("DB_HOST", "localhost");
 define("DB_USERNAME", "vendor");
 define("DB_PASSWORD", "abc123");

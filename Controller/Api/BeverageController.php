@@ -1,24 +1,30 @@
 <?php
+/*
+    BeverageController.php - logic for updating beverage database and sending responses
+*/
 require_once PROJECT_ROOT_PATH . "/Controller/Api/BaseController.php";
 
 class BeverageController extends BaseController {
   /**
-   * "/inventory" Endpoint 
+   * "index.php/inventory" Endpoint 
    */
   public function inventory() {
     $strErrorDesc = '';
     $requestMethod = $_SERVER[ "REQUEST_METHOD" ];
     $arrQueryStringParams = $this->getQueryStringParams();
 
-    //Array of remaining item quantities
+    //Get array of remaining item quantities
     if ( strtoupper( $requestMethod ) == 'GET' ) {
       try {
         $beverageModel = new BeverageModel();
 
         $intLimit = 3;
+        
+        //Get beverage quantity based on ID
         if ( isset( $arrQueryStringParams[ 'id' ] ) ) {
           $id = $arrQueryStringParams[ 'id' ];
           $arrBeverages = $beverageModel->getId( $id, $intLimit );
+        //Get all beverage quantities
         } else
           $arrBeverages = $beverageModel->getBeverages( $intLimit );        
           
@@ -35,12 +41,13 @@ class BeverageController extends BaseController {
       }
     }
 
-
+    //Vend a beverage 
     else if ( strtoupper( $requestMethod ) == 'PUT' && isset( $arrQueryStringParams[ 'id' ] )) {
       try {
         $beverageModel = new BeverageModel();
 
         $intLimit = 3;
+        //Vend beverage based on ID
         if ( isset( $arrQueryStringParams[ 'id' ] ) ) {
           $id = $arrQueryStringParams[ 'id' ];
           $arrBeverageQuantity = $beverageModel->getId( $id, $intLimit );
@@ -55,12 +62,14 @@ class BeverageController extends BaseController {
             $responseData = json_encode(array("quantity"=>1));
             $responseCode = 'HTTP/1.1 200 OK';
           }
+          //If out of stock
           else if ( $arrBeverageQuantity[ 0 ][ 'quantity' ] == 0 ) {
             $responseData ='';
             $xcoins = 'X-Coins:' . $arrCoinsQuantity[ 0 ]['quantity'];  
             $xinventory = "";
             $responseCode = 'HTTP/1.1 404 Not Found';
           } 
+          //If not enough coins
           else if ( $arrCoinsQuantity[ 0 ][ 'quantity' ] <= 1 ) {
               
             $responseData ='';
@@ -101,12 +110,12 @@ class BeverageController extends BaseController {
     }
   }
 
-  //
+  //Put and Delete coins (index.php endpoint)
   public function coins() {
 
     $strErrorDesc = '';
     $requestMethod = $_SERVER[ "REQUEST_METHOD" ];
-
+    //Add a coin
     if ( strtoupper( $requestMethod ) == 'PUT' ) {
       try {
         $beverageModel = new BeverageModel();
@@ -117,7 +126,9 @@ class BeverageController extends BaseController {
         $strErrorDesc = $e->getMessage() . 'Something went wrong! Please contact support.';
         $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
       }
-    } else if ( strtoupper( $requestMethod ) == 'DELETE' ) {
+    }
+      //Remove coins when Vending
+      else if ( strtoupper( $requestMethod ) == 'DELETE' ) {
       try {
         $beverageModel = new BeverageModel();
         $arrCoins = $beverageModel->selectCoin();

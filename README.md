@@ -24,7 +24,7 @@ With your favorite API client the following HTTP requests can be made:
 
 #### Coin accepted:
 
-```PUT http://simple-rest-api-php:8888/index.php/```
+```PUT http://simple-rest-api-php:8888```
 
 Request Body:
 
@@ -44,7 +44,7 @@ Response Header:
 
 #### Coins returned:
 
-```DELETE http://simple-rest-api-php:8888/index.php/```
+```DELETE http://simple-rest-api-php:8888/```
 
 Response Code:
 
@@ -56,7 +56,7 @@ Response Header:
 
 #### Get an array of integers of remaining item quantities:
 
-```GET http://simple-rest-api-php:8888/index.php/inventory```
+```GET http://simple-rest-api-php:8888/inventory```
 
 Response Code:
 
@@ -68,7 +68,7 @@ Response Body:
 
 #### Get remaining item quantity (an integer) where ```id=#``` is a zero-based indexed list of three options:
 
-```GET http://simple-rest-api-php:8888/index.php/inventory?id=#```
+```GET http://simple-rest-api-php:8888/inventory/?id=#```
 
 Response Code:
 
@@ -80,7 +80,7 @@ Response Body:
 
 #### Vend an item:
 
-```PUT http://simple-rest-api-php:8888/index.php/inventory?id=#```
+```PUT http://simple-rest-api-php:8888/inventory/?id=#```
 
 Response Code:
 
@@ -100,7 +100,7 @@ Response Body:
 
 #### Attempt to vend an item out of stock:
 
-```PUT http://simple-rest-api-php:8888/index.php/inventory?id=#```
+```PUT http://simple-rest-api-php:8888/inventory/?id=#```
 
 Response Code:
 
@@ -112,7 +112,7 @@ Response Headers:
 
 #### Attempt to vend with insufficient coins:
 
-```PUT http://simple-rest-api-php:8888/index.php/inventory?id=#```
+```PUT http://simple-rest-api-php:8888/inventory/?id=#```
 
 Response Code:
 

@@ -12,6 +12,7 @@ class BeverageController extends BaseController {
     $strErrorDesc = '';
     $requestMethod = $_SERVER[ "REQUEST_METHOD" ];
     $arrQueryStringParams = $this->getQueryStringParams();
+      //print_r($_GET);
 
     //Get array of remaining item quantities
     if ( strtoupper( $requestMethod ) == 'GET' ) {
@@ -23,6 +24,7 @@ class BeverageController extends BaseController {
         //Get beverage quantity based on ID
         if ( isset( $arrQueryStringParams[ 'id' ] ) ) {
           $id = $arrQueryStringParams[ 'id' ];
+            
           $arrBeverages = $beverageModel->getId( $id, $intLimit );
         //Get all beverage quantities
         } else
